@@ -9,7 +9,12 @@ import { NavigationContainer } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons'
 import HomeScreen from '../../../screen/Home'
 import colors from '../../../config/colors'
-import { drawerIconLabel, drawerContent, drawerStyle } from './styles'
+import {
+  drawerIconLabel,
+  drawerContent,
+  drawerStyle,
+  sceneContainerDrawer,
+} from './styles'
 import modelDrawerLabel from '../../../models/modelDrawerLabel'
 
 const IconArrow = () => (
@@ -40,6 +45,7 @@ export default function DrawerNavigation() {
         drawerStyle={drawerStyle}
         drawerContentOptions={drawerContent}
         drawerPosition="right"
+        sceneContainerStyle={sceneContainerDrawer}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
         <Drawer.Screen

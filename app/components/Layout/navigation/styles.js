@@ -13,4 +13,6 @@ export const drawerContent = {
   activeTintColor: 'rgba(0,0,0,.2)',
 }
 
+export const sceneContainerDrawer = { backgroundColor: 'transparent' }
+
 export const styles = StyleSheet.create({})

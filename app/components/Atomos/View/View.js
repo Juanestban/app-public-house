@@ -4,5 +4,5 @@ import { styles } from './styles'
 
 export const View = ({ style, children }) => {
   const { viewStyle } = styles
-  return <Vw style={[viewStyle, style]}>{children}</Vw>
+  return <Vw style={[style, viewStyle]}>{children}</Vw>
 }
