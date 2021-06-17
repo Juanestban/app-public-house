@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
 import * as Font from 'expo-font'
-import Text from './components/Atomos/Text'
+import DrawerNavigator from './components/Layout/navigation'
 import colors from './config/colors'
 import fontLoader from './config/fonts'
+import View from './components/Atomos/View'
 
 export default function App() {
   const [loadFont, setLoadFont] = useState(false)
@@ -21,17 +21,9 @@ export default function App() {
   if (!loadFont) return <View></View>
 
   return (
-    <View style={styles.container}>
+    <View>
       <StatusBar style="light" backgroundColor={colors.statusBarColor} />
-      <Text>Hagale sin pesares! selecciona una categoria.</Text>
+      <DrawerNavigator />
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    justifyContent: 'center',
-  },
-})
