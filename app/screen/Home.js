@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Image,
   Dimensions,
   ScrollView,
-  Button,
   View as ViewDefault,
 } from 'react-native'
-import View from '../components/Atomos/View'
 import Text from '../components/Atomos/Text'
 import Navbar from '../components/Moleculas/Navbar'
 import { useQuery } from '../hooks/useQuery'
 import { modelCarrusel } from '../models/modelCarrusel'
 import colors from '../config/colors'
 import { obtenerTodasCategorias } from '../services/categoriasServicios'
+import Categorias from '../components/Moleculas/Categorias'
+import ProductosList from '../components/Moleculas/Productos'
 
 const { width } = Dimensions.get('window')
 const height = width * 0.6
@@ -23,10 +23,13 @@ export default function HomeScreen() {
   const { data, isError, isLoading, isErrorMsg, refresh } = useQuery(
     obtenerTodasCategorias
   )
+  const [idCategoria, setIdCategoria] = useState(16)
+
+  const handleChangeId = (id) =>
+    setIdCategoria(id)
 
   useEffect(() => {
     refresh()
-    console.log(data, isError, isErrorMsg, isLoading)
   }, [])
 
   return (
@@ -53,38 +56,20 @@ export default function HomeScreen() {
           ))}
         </ScrollView>
       </ViewDefault>
-      <View>
+      <ViewDefault>
         <Text style={{ fontSize: 17, textAlign: 'center' }}>
           hagale{' '}
           <Text style={{ color: colors.textColorSecondary }}>sin pesares!</Text>{' '}
           selecciona una categoria.
         </Text>
-      </View>
-      <ViewDefault style={{ width: width2, height: height2 }}>
-        <ScrollView
-          style={{ width: width2, height: height2 }}
-          pagingEnabled
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
-          {!isLoading &&
-            !isError &&
-            data.map(({ id = 0, nombre = '', icono = '' }) => (
-              <Button key={id} onPress={() => console.log('nice!')}>
-                <Image
-                  source={icono}
-                  style={{
-                    width: 150,
-                    height: 150,
-                    resizeMode: 'cover',
-                    borderRadius: '50%',
-                  }}
-                />
-                <Text>{nombre}</Text>
-              </Button>
-            ))}
-        </ScrollView>
       </ViewDefault>
+      <Categorias
+        width={width}
+        data={data}
+        isError={isError}
+        isLoading={isLoading}
+        onChangeId={handleChangeId} />
+      <ProductosList idCategoria={idCategoria} />
     </>
   )
 }

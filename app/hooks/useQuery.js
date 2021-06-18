@@ -21,9 +21,26 @@ export const useQuery = (fetchAxios) => {
     }
   }
 
-  // falta post, put y delete
-
-  const refresh = () => fetchQuery()
+  const fetchApiId = async (id) => {
+    try {
+      setIsError(false)
+      setIsLoading(true)
+      const { data } = await fetchAxios(id)
+      setData(data)
+      setIsLoading(false)
+    } catch ({ response: { mensaje = '' } }) {
+      setIsLoading(false)
+      setIsError(true)
+      console.log(mensaje)
+      setIsErrorMsg(mensaje)
+    }
+  }
+  
+  const refresh = async (esPorId) => {
+    if (esPorId)
+      return await fetchApiId(esPorId)
+    return await fetchQuery()
+  }
 
   return { data, isLoading, isError, isErrorMsg, refresh }
 }

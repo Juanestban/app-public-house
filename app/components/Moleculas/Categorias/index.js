@@ -1,0 +1,1 @@
+export { Catetgorias as default } from './Categorias'

@@ -1,0 +1,1 @@
+export { ProductosList as default } from './ProductosList'
