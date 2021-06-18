@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import * as Font from 'expo-font'
 import { Video } from 'expo-av'
 import DrawerNavigator from './components/Layout/navigation'
 import colors from './config/colors'
 import fontLoader from './config/fonts'
+import { styles } from './styles'
 
 export default function App() {
   const [loadFont, setLoadFont] = useState(false)
@@ -38,23 +39,3 @@ export default function App() {
     </View>
   )
 }
-const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    zIndex: 1,
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-  },
-  container: {
-    flex: 1,
-    position: 'relative',
-    backgroundColor: 'transparent',
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    zIndex: 2,
-  },
-})

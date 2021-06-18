@@ -7,7 +7,6 @@ const modelDrawerLabel = [
   'Facebook',
   'Instagram',
   'Nuestra Playlist',
-  'Cerrar Sesión',
 ]
 
 export default modelDrawerLabel
